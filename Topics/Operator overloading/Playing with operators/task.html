@@ -1,0 +1,12 @@
+<h2>Playing with operators</h2>
+<p></p>
+<p>What will the following code print?</p>
+<pre><code class="language-kotlin">operator fun StringBuilder.timesAssign(n: Int) {
+    this.append(this.toString().repeat(n - 1))
+}
+
+fun main() {
+    val sb = StringBuilder("Kotlin")
+    sb *= 3
+    println(sb)
+}</code></pre>

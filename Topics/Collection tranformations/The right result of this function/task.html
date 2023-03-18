@@ -1,0 +1,12 @@
+<h2>The right result of this function</h2>
+<p></p>
+<p>What is the result of this code? </p>
+<pre><code class="language-kotlin">val listOfNames = listOf("John", "Jane", "Joe")
+    val listOfAges = listOf(20, 21, 22, 23, 24)
+    println(listOfNames.zip(listOfAges).joinToString(
+        separator = " and ",
+        prefix = "¿",
+        postfix = "?",
+        limit = 2,
+        truncated = "..."
+    ) { "${it.first}-&gt;${it.second}" })</code></pre>

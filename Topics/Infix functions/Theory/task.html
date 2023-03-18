@@ -1,0 +1,56 @@
+<h2>Infix functions</h2>
+<p>Kotlin is a language that adapts to your way of programming or code writing, which allows you to develop the code you want when you want. Kotlin offers mechanisms that help us create code that is easy to read and understand.</p>
+<p>One of the most interesting mechanisms is the infix notation. It allows us to define and use functions without parentheses or dots.</p>
+<h5 id="infix-notation">Infix notation</h5>
+<p>The infix notation is used in arithmetical and logical code. It is characterized by the placement of operators between operands: for example, 2 + 3, where "+" is the infix operator.</p>
+<p>In infix notation, the function name is placed between the arguments and the name of the function itself is the operator. An example of such a function would be <code class="language-kotlin">add(2, 4)</code> in which the function <code class="language-kotlin">add</code> denotes addition ("add"): <code class="language-kotlin">add(2, 4)</code> = <code class="language-kotlin">2 add 4</code>.</p>
+<p>To define an infix function, you must meet the following requirements.</p>
+<ul>
+<li>They must be member functions or extension functions.</li>
+<li>They must have a single parameter.</li>
+<li>The parameter must not accept variable number of arguments and must have no default value.</li>
+</ul>
+<p>To define your own functions with the infix notation, just add the <code class="language-kotlin">infix</code> keyword to your function definition.</p>
+<pre><code class="language-kotlin">infix fun Int.add(x: Int): Int = this + x
+
+fun main() {
+    println(1.add(2)) // result is 3 as extension function
+    println(1 add 2)  // result is 3 as infix function
+}
+</code></pre>
+<h5 id="creating-infix-functions">Creating infix functions</h5>
+<p>You can create infix functions whenever you want: for example, to improve the readability of your code or create a DSL (Domain Specific Language). But remember, infix function calls have lower precedence than arithmetic operators or other elements defined in the language, like type casts and the <code class="language-kotlin">rangeTo</code> operator.</p>
+<pre><code class="language-kotlin">infix fun Int.add(x: Int): Int = this + x
+fun main() {
+    println(1 add 2 + 3)   // 6
+    println(1 add (2 + 3)) // 6
+    println(0..(1 add 3))  // 0..4
+}</code></pre>
+<p>On the other hand, an infix function's call precedence is higher than that of the boolean operators <code class="language-kotlin">&amp;&amp;</code> and <code class="language-kotlin">||</code>, <code class="language-kotlin">is</code>- and <code class="language-kotlin">in</code>-checks, and some other operators. </p>
+<pre><code class="language-kotlin">infix fun Int.add(x: Int): Int = this + x
+fun main() {
+    println(1 and 2 xor 3 add 4) // 1 and 2 xor (3 add 4) -&gt; 7
+    println(1 add 2 in 3..4)     // (1 add 2) in 3..4 -&gt; true
+}</code></pre>
+<p>Remember also that infix functions always require both the receiver and the parameter to be specified and that you must use <code class="language-kotlin">this</code> to reference the current receiver.</p>
+<pre><code class="language-kotlin">infix fun Int.add(x: Int): Int = this + x // this is the receiver
+fun main() {
+    println(2 + 3) // receiver is 2
+}</code></pre>
+<h5 id="standard-library-infix-functions">Standard Library Infix Functions</h5>
+<p>In the Kotlin standard library, we have many examples of functions used with the infix notation:</p>
+<ul>
+<li>Function <code class="language-kotlin">to()</code>: with <code class="language-kotlin">Pair&lt;A, B&gt;</code> and <code class="language-kotlin">Map&lt;T, V&gt;</code>.</li>
+<li>Bitwise functions: <code class="language-kotlin">and()</code>, <code class="language-kotlin">or()</code>, <code class="language-kotlin">shl()</code>, <code class="language-kotlin">shr()</code>, <code class="language-kotlin">ushr()</code>, and <code class="language-kotlin">xor()</code>.</li>
+<li><code class="language-kotlin">Boolean</code> class methods: <code class="language-kotlin">and()</code>, <code class="language-kotlin">or()</code>, and <code class="language-kotlin">xor()</code>. </li>
+<li><code class="language-kotlin">String</code> class methods: <code class="language-kotlin">match</code> and <code class="language-kotlin">zip</code> functions.</li>
+</ul>
+<pre><code class="language-kotlin">fun main() {
+    println("Hi" to "Kotlin")                          // ("Hi", "Kotlin")
+    println(0x123456 shr 16)                           // 18
+    println(true and false or true xor false)          // true
+    println("Hi, Kotlin" matches ".*Kotlin".toRegex()) // true
+}</code></pre>
+<p><strong style="font-size: 1.17em; text-align: inherit;">Conclusion</strong></p>
+<p>Infix functions are a powerful tool for making our code more readable and maintainable. Using them, you must take into account the indicated requirements as well as the order of precedence of operators. Infix notation will help you take your code to another level of quality and expand the possibilities of code writing.</p>
+<p>Now is the time to do some tasks to check what you have learned. Are you ready?</p>

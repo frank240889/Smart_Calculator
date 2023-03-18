@@ -1,0 +1,1 @@
+val color = Regex("""colo(u)?r(s)?""", RegexOption.IGNORE_CASE)

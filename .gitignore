@@ -1,0 +1,87 @@
+# course config files
+*.yaml
+
+# gradle
+.gradle/
+gradle/
+gradlew
+*.bat
+build
+
+
+# idea confid
+.idea
+
+# old stages
+/Smart Calculator/*
+!/Smart Calculator/task/
+/Smart Calculator/task/*
+!/Smart Calculator/task/src
+
+# Project exclude paths
+/Topics/Aggregate operations on collections/Harry and the Spell Power/out/
+/Topics/Aggregate operations on collections/Harry and the Spell Power/out/production/classes/
+/Topics/Aggregate operations on collections  part 2/List of students/out/
+/Topics/Aggregate operations on collections  part 2/List of students/out/production/classes/
+/Topics/ArrayDeque/Hacking the Matrix/out/
+/Topics/ArrayDeque/Hacking the Matrix/out/production/classes/
+/Topics/BigInteger/Percentage/out/
+/Topics/BigInteger/Percentage/out/production/classes/
+/Topics/Collections as interface/Cut the collection/out/
+/Topics/Collections as interface/Cut the collection/out/production/classes/
+/Topics/Companion object/Singleton vs Companion Object/out/
+/Topics/Companion object/Singleton vs Companion Object/out/production/classes/
+/Topics/Comparable and Comparator/Which book is cheaper/out/
+/Topics/Comparable and Comparator/Which book is cheaper/out/production/classes/
+/Topics/Creating custom exceptions/Keyword super/out/
+/Topics/Creating custom exceptions/Keyword super/out/production/classes/
+/Topics/Custom sort order for collection/Order your scores/out/
+/Topics/Custom sort order for collection/Order your scores/out/production/classes/
+/Topics/Destructuring declarations/Pretty output/out/
+/Topics/Destructuring declarations/Pretty output/out/production/classes/
+/Topics/Euclidean division/Using parentheses in your code/out/
+/Topics/Euclidean division/Using parentheses in your code/out/production/classes/
+/Topics/Extension functions/Delegation/out/
+/Topics/Extension functions/Delegation/out/production/classes/
+/Topics/Fold and reduce on collections/Application/out/
+/Topics/Fold and reduce on collections/Application/out/production/classes/
+/Topics/Fold and reduce on collections/The average of your scores/out/
+/Topics/Fold and reduce on collections/The average of your scores/out/production/classes/
+/Topics/For loop and iterables/Very long word/out/
+/Topics/For loop and iterables/Very long word/out/production/classes/
+/Topics/Function references/Syntax of function references/out/
+/Topics/Function references/Syntax of function references/out/production/classes/
+/Topics/Grouping collections/Harry and the Spell Power/out/
+/Topics/Grouping collections/Harry and the Spell Power/out/production/classes/
+/Topics/Grouping collections/List of students/out/
+/Topics/Grouping collections/List of students/out/production/classes/
+/Topics/Grouping collections/The result of your scores/out/
+/Topics/Grouping collections/The result of your scores/out/production/classes/
+/Topics/Infix functions/The right result of the code/out/
+/Topics/Infix functions/The right result of the code/out/production/classes/
+/Topics/Inheritance/Fix bugs/out/
+/Topics/Inheritance/Fix bugs/out/production/classes/
+/Topics/Interface inheritance/Implementing a class which inherits properties of several interfaces/out/
+/Topics/Interface inheritance/Implementing a class which inherits properties of several interfaces/out/production/classes/
+/Topics/Introduction to Interfaces/A few keywords/out/
+/Topics/Introduction to Interfaces/A few keywords/out/production/classes/
+/Topics/Null and collections/Null or min/out/
+/Topics/Null and collections/Null or min/out/production/classes/
+/Topics/Recursion/Is this actually recursion/out/
+/Topics/Recursion/Is this actually recursion/out/production/classes/
+/Topics/Regexps/Help the teacher/out/
+/Topics/Regexps/Help the teacher/out/production/classes/
+/Topics/Retrieve collection parts/List of students' grades/out/
+/Topics/Retrieve collection parts/List of students' grades/out/production/classes/
+/Topics/Retrieve single element/The result of a function/out/
+/Topics/Retrieve single element/The result of a function/out/production/classes/
+/Topics/Scope functions  let, run, and with/Organize your code/out/
+/Topics/Scope functions  let, run, and with/Organize your code/out/production/classes/
+/Topics/Scope functions  summary/Dead Man’s Bones/out/
+/Topics/Scope functions  summary/Dead Man’s Bones/out/production/classes/
+/Topics/Test predicates  checking elements in collection/Every number is divisible by 3/out/
+/Topics/Test predicates  checking elements in collection/Every number is divisible by 3/out/production/classes/
+/Topics/The Math library/National assembly/out/
+/Topics/The Math library/National assembly/out/production/classes/
+/Topics/The Math library/The angle between vectors/out/
+/Topics/The Math library/The angle between vectors/out/production/classes/

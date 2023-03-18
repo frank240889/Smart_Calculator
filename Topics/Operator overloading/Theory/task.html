@@ -1,0 +1,527 @@
+<h2>Operator overloading</h2>
+<p>Kotlin is a language that adapts to your way of programming or code writing. Kotlin allows you to define your custom implementations of operators and allows making your code cleaner and more readable.</p>
+<p>In this topic, you will learn how to define your own implementations of operators on your data types.</p>
+<h5 id="operator-overloading">Operator overloading</h5>
+<p>Kotlin allows you to define your own operators on certain types. These operators have predefined symbolic representation, like "+" or "+=", and precedence. To define our custom operator, we must meet these requirements:</p>
+<ul>
+<li>Provide a member function or an extension function with a specific name for the corresponding type.</li>
+<li>This type becomes the left-hand side type for binary operations and the argument type for the unary ones.</li>
+</ul>
+<p>To customize an operator, we should mark the function with the <code class="language-kotlin">operator</code> modifier.</p>
+<pre><code class="language-kotlin">operator fun String.unaryMinus() = this.reversed()
+
+fun main() {
+    val name = "Kotlin"
+    println(-name) // noitloK
+}</code></pre>
+<p>Also, you can combine <code class="language-kotlin">operator</code> with the <code class="language-kotlin">infix</code> modifier.</p>
+<pre><code class="language-kotlin">infix operator fun String.times(n: Int) = this.repeat(n)
+
+fun main() {
+    val s = "Kotlin"
+    println(s * 3) //KotlinKotlinKotlin
+}</code></pre>
+<ul>
+</ul>
+<h5 id="unary-operations">Unary operations</h5>
+<p>These are functions that generally have no parameters. </p>
+<p><strong>Unary prefix operators</strong></p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">+a</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.unaryPlus()</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">-a</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.unaryMinus()</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">!a</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.not()</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Increments and decrements</strong></p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a++</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.inc()</code> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a--</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.dec()</code> </p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">operator fun Pair&lt;Int, Int&gt;.unaryMinus() = Pair(-first, -second)
+operator fun Pair&lt;Int, Int&gt;.inc() = Pair(first + 1, second + 1)
+
+fun main() {
+    var p = Pair(1, 2)
+    println(-p) // (-1, -2)
+    println(++p) // (2, 3)
+}</code></pre>
+<h5 id="binary-operations">Binary operations</h5>
+<p>These are functions that generally have two parameters. </p>
+<p><strong>Arithmetic operators</strong></p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a + b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.plus(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a - b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.minus(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a * b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.times(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a / b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.div(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a % b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.rem(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a..b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.rangeTo(b)</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">operator fun Pair&lt;Int, Int&gt;.plus(other: Pair&lt;Int, Int&gt;) = 
+    Pair(first + other.first, second + other.second)
+
+
+fun main() {
+    var point1 = Pair(1, 2)
+    var point2 = Pair(3, 4)
+    println(point1 + point2) // (4, 6)
+}</code></pre>
+<p><strong>in operator</strong></p>
+<p>For <code class="language-kotlin">in</code> and <code class="language-kotlin">!in</code>, the procedure is the same, but the order of arguments is reversed.</p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a in b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">b.contains(a)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a !in b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">!b.contains(a)</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">operator fun Pair&lt;Int, Int&gt;.contains(n: Int) = n in first..second
+
+fun main() {
+    var point1 = Pair(1, 2)
+    println(1 in point1) // true
+}</code></pre>
+<h5 id="indexed-access-operator">Indexed access operator</h5>
+<p>Square brackets <code class="language-kotlin">[]</code> are translated to calls to <code class="language-kotlin">get</code> and <code class="language-kotlin">set</code>.</p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a[i]</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.get(i)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a[i, j]</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.get(i, j)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a[i_1, ..., i_n]</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.get(i_1, ..., i_n)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a[i] = b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.set(i, b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a[i, j] = b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.set(i, j, b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a[i_1, ..., i_n] = b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.set(i_1, ..., i_n, b)</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">operator fun Pair&lt;Int, Int&gt;.get(n: Int) = when (n) {
+    0 -&gt; first
+    1 -&gt; second
+    else -&gt; throw IndexOutOfBoundsException()
+}
+
+fun main() {
+    var point1 = Pair(1, 2)
+    println(point1[0]) // 1
+    println(point1[1]) // 2
+}</code></pre>
+<p><strong>invoke operator</strong></p>
+<p>Parentheses with parameters are translated to calls to <code class="language-kotlin">invoke</code>.</p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a()</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.invoke()</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a(i)</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.invoke(i)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a(i, j)</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.invoke(i, j)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a(i_1, ..., i_n)</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.invoke(i_1, ..., i_n)</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">operator fun Pair&lt;Int, Int&gt;.invoke(newLine: Boolean) {
+    print("($first, $second)")
+    if (newLine) println()
+}
+
+fun main() {
+    var point1 = Pair(1, 2)
+    point1(true) // [1, 2]
+
+
+}</code></pre>
+<h5 id="augmented-assignments">Augmented assignments</h5>
+<p>They perform the same operations as binary methods but assign the result to the same object.</p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a += b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.plusAssign(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a -= b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.minusAssign(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a *= b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.timesAssign(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a /= b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.divAssign(b)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a %= b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.remAssign(b)</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">operator fun StringBuilder.plusAssign(other: String) {
+    this.append(other)
+}
+
+fun main() {
+    val name = StringBuilder("Kotlin")
+    name += " is awesome"
+    println(name) // Kotlin is awesome
+}</code></pre>
+<h5 id="equality-and-inequality-operators">Equality and inequality operators</h5>
+<p>These operators only work with the function <code class="language-kotlin">equals(other: Any?)</code> implementation of a class or type.</p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a == b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a?.equals(b) ?: (b === null)</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a != b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">!(a?.equals(b) ?: (b === null))</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">class Point(val x: Int, val y: Int) {
+    override fun equals(other: Any?): Boolean {
+        if (other is Point) {
+            return other.x == x &amp;&amp; other.y == y
+        }
+        return false
+    }
+}
+
+fun main() {
+    val p1 = Point(1, 2)
+    val p2 = Point(1, 2)
+    println(p1 == p2) // true
+}</code></pre>
+<h5 id="comparison-operators">Comparison operators</h5>
+<p>These operators only work with the function <code class="language-kotlin">compareTo()</code> implementation of a class or type.</p>
+<table>
+<thead>
+<tr>
+<th>
+<p>Expression</p>
+</th>
+<th>
+<p>Translated to</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><code class="language-kotlin">a &gt; b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.compareTo(b) &gt; 0</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a &lt; b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.compareTo(b) &lt; 0</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a &gt;= b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.compareTo(b) &gt;= 0</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><code class="language-kotlin">a &lt;= b</code></p>
+</td>
+<td>
+<p><code class="language-kotlin">a.compareTo(b) &lt;= 0</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-kotlin">class Point(val x: Int, val y: Int) : Comparable&lt;Point&gt; {
+    override fun compareTo(other: Point): Int {
+        return if (x == other.x) y.compareTo(other.y) else x.compareTo(other.x)
+    }
+}
+
+fun main() {
+    val p1 = Point(1, 2)
+    val p2 = Point(1, 2)
+    println(p1 &lt; p2) // false
+    println(p1 &lt;= p2) // true
+}
+
+</code></pre>
+<h5 id="conclusion">Conclusion</h5>
+<p>Operator overloading is a powerful tool for making our code more readable and maintainable. To use it, you must take into account the indicated requirements. It will help you take your code to another level of quality in managing your types and methods.</p>
+<p>Now is the time to check what you have learned with some tasks. Let's go!</p>

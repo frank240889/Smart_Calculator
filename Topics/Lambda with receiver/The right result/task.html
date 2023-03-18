@@ -1,0 +1,9 @@
+<h2>The right result</h2>
+<p></p>
+<p>What is the result of this code? </p>
+<pre><code class="language-kotlin">fun Int.opp(f: Int.() -&gt; Int): Int = f()
+
+fun main() {
+    val res = 10.opp { this % 2 }
+    println(res)
+}</code></pre>
